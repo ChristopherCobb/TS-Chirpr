@@ -88,7 +88,7 @@ useEffect(() => {
           <textarea className="card-title bg-light" onChange={e => handleUserChange(e)}>{username}</textarea>
           <textarea className="card-text bg-white" onChange={e => handleMessageChange(e)}>{message}</textarea>
           <button className="btn btn-outline-danger rounded" onClick={e => handleEdit(e)}>Save Edit</button>
-                <button className="btn btn-outline-danger rounded" onClick={e => handleDelete(e)}>Delete Chirp</button>
+          <button className="btn btn-outline-danger rounded" onClick={e => handleDelete(e)}>Delete Chirp</button>
 
           <Link to="/">
             <button type="button" className="btn btn-outline-dark">
