@@ -32,7 +32,7 @@ router.get("/:id?", (req: express.Request, res: express.Response) => {
 
 router.post("/", (req: express.Request, res: express.Response) => {
   const chirpObj: chirp = {
-    username: req.body.name,
+    username: req.body.username,
     message: req.body.message,
   };
 
@@ -43,7 +43,7 @@ router.post("/", (req: express.Request, res: express.Response) => {
 router.put("/:id", (req: express.Request, res: express.Response) => {
   const id= req.params.id;
   const chirpObj: chirp = {
-    username: req .body.name,
+    username: req.body.username,
     message: req.body.message
 };
   UpdateChirp(id, chirpObj);

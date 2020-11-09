@@ -1,13 +1,20 @@
-nav {
-    text-align: center;
+#header1 {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 1em;
+}
+
+#row1 {
+  margin-top: 8em;
+  display: flex;
+  justify-content: center;
 }
 
 #btn1 {
-
-    margin-right:10em;
-}  
+  margin-right: 10em;
+}
 
 #btn2 {
-    margin-left: 25em;
-
+  margin-left: 10em;
 }
