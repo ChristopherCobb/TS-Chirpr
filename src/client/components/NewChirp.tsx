@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory, RouteComponentProps } from "react-router-dom";
 
-const NewChirp: React.FC<ChirpProp> = (props) => {
+
+const NewChirp: React.FC<IChirpProps> = (props: IChirpProps) => {
   const [username, setUser] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
@@ -14,15 +15,8 @@ const NewChirp: React.FC<ChirpProp> = (props) => {
     setMessage(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const submitChirp = async (e) => {
     e.preventDefault();
-    submitChirp();
-    history.push("/");
-  };
-
-  const history = useHistory();
-
-  const submitChirp = async () => {
     const chirp = {
       username: username,
       message: message,
@@ -35,11 +29,9 @@ const NewChirp: React.FC<ChirpProp> = (props) => {
       },
       body: JSON.stringify(chirp),
     });
-  };
 
-  useEffect(() => {
-    submitChirp();
-  }, []);
+    props.history.push("/");
+  };
 
   return (
     <form className=" d-flex justify-content-center align-items-center">
@@ -69,9 +61,9 @@ const NewChirp: React.FC<ChirpProp> = (props) => {
           ></input>
         </div>
         <button
-          type="button"
+          type="submit"
           className="btn btn-outline-danger w-20 mx-auto shadow-sm mb-2"
-          onClick={handleClick}
+          onClick={(e) => submitChirp(e)}
         >
           Send Chirp!
         </button>
@@ -80,7 +72,7 @@ const NewChirp: React.FC<ChirpProp> = (props) => {
   );
 };
 
-export interface ChirpProp extends RouteComponentProps<{ id:string }> {
+export interface IChirpProps extends RouteComponentProps<{ id:string }> {
   id: number;
   username: string;
   message: string;

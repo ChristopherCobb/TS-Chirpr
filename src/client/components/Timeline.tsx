@@ -1,23 +1,28 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 
-const Timeline: React.FunctionComponent = () => {
-  const [chirps, setChirps] = useState<ChirpProps[]>([]);
+const Timeline: React.FC<ChirpProps> = () => {
+  const [chirps, setChirps] = React.useState<ChirpProps[]>([]);
 
   const getChirps = async () => {
-    const res = await fetch(`api/chirps`);
-    const chirps = await res.json();
-
-    setChirps(chirps);
+    console.log("fetching chirps")
+    try {
+      let res = await fetch("/api/chirps/");
+      let chirps = await res.json();
+      chirps.reverse();
+      setChirps(chirps);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getChirps();
   }, []);
 
   return (
     <section className="row" id="row1">
-      {chirps.map((chirp) => (
+      {chirps.map((chirp: ChirpProps) => (
         <div
           key={chirp.id}
           className="card d-flex justify-content-center align-items-center shadow-lg text-center m-4 rounded text-danger bg-white "
@@ -30,10 +35,10 @@ const Timeline: React.FunctionComponent = () => {
             style={{ height: "100px", width: "100px" }}
           />
           <div className="card-body">
-            <h5 className="card-title bg-light">{chirp.username}</h5>
+            <h5 className="card-title bg-light">@{chirp.username}</h5>
             <p className="card-text bg-white">{chirp.message}</p>
 
-            <Link to="/chirp/:id/admin">
+            <Link to={`/chirp/${chirp.id}/admin`}>
               <button type="button" className="btn btn-outline-dark">
                 Admin Options
               </button>
@@ -46,7 +51,7 @@ const Timeline: React.FunctionComponent = () => {
 };
 
 interface ChirpProps {
-  id: string;
+  id?: string;
   username: string;
   message: string;
 }
