@@ -11,23 +11,25 @@ const App: React.FC<IAppProps> = (props: IAppProps) => {
     <Router>
       <header id="header1" className=" rounded shadow-lg text-white bg-danger">
         <Link to="/">
-          <button id="btn1" className="btn btn-lg btn-outline-dark">
+          <button id="btn1" className="btn btn-lg text-light">
             My Chirps
           </button>
         </Link>{" "}
         Chirpr
         <Link to="/chirp/add">
-          <button id="btn2" className="btn btn-lg btn-outline-dark">
+          <button id="btn2" className="btn btn-lg text-light">
             New Chirp
           </button>
         </Link>
       </header>
       <main className="container-fluid">
+        <div className="background">
         <Switch>
           <Route exact path="/" component={Timeline}></Route>
           <Route exact path="/chirp/add" component={NewChirp}></Route>
           <Route exact path="/chirp/:id/admin" component={admin}></Route>
         </Switch>
+        </div>
       </main>
     </Router>
   );

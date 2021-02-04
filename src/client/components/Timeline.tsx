@@ -21,6 +21,7 @@ const Timeline: React.FC<ChirpProps> = () => {
   }, []);
 
   return (
+
     <section className="row" id="row1">
       {chirps.map((chirp: ChirpProps) => (
         <div
